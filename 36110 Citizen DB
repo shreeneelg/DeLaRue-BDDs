@@ -16,5 +16,5 @@ And I enter '<Firstname>' as 'Firstname'
 And I enter '<Lastname>' as 'Lastname'
 And I enter PagingData with <PageNumber> as ' PageNumber' and <PageSize> as 'PageSize'
 When I post 'Search Citizen' by clicking Send button
-Then I should see that Record is not searched 
+Then I should see that Record is not searched {Add sample data}
 And I should see Status in the Postman as 'Status:401 Unauthorized'.
