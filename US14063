@@ -47,6 +47,7 @@ And I can see field to enter barcode
 And I enter a valid '<barcode>'
 When I click ‘Clear’ button
 Then I should see '<barcode>'as blank
+And I should see ‘Clear’ button as disable
 
 Examples:
 | user   		| Password	|barcode |
