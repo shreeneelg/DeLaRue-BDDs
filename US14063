@@ -1,0 +1,53 @@
+Feature: As a Stock Operator,
+I want to receive delivered card stock from De La Rue Malta into secure stores at my production site
+So that I have a record of received card stock 
+
+
+*** Delete peripherals from Master List or a specific Workstation ****
+
+
+@TC_ US14063_1 
+
+Scenario Outline: Verify ‘Receive Stock’ page User Interface
+Given I am logged in to DLR Inventory Management as user '<user>' and with '<Password>' 
+When I click on 'Receive Stock' icon
+Then I should see ‘Receive Stock’ as header
+And I should see Field to enter '<barcode>'
+And I should see ‘Check Code’ button is disabled
+And I should see ‘Clear’ button is disabled
+And I should see ‘Receive’ button is disabled
+And I should see ‘Back’ button is enabled 
+
+Examples:
+| user   		| Password	|barcode |
+| IMStockOperator	| P@ssw0rd	|case1   |
+
+
+@TC_ US14063_2 
+
+Scenario Outline: Verify alert message for wrong barcode (negative scenario)
+Given I am logged in to DLR Inventory Management as user '<user>' and with '<Password>'
+And I click on 'Receive Stock' icon 
+And I can see field to enter barcode
+And I enter a wrong '<barcode>'
+When I click ‘Check Code’ button
+Then I should see alert message ‘Inventory item not found’ 
+
+Examples:
+| user   		| Password	|barcode |
+| IMStockOperator	| P@ssw0rd	|case7   |
+
+
+@TC_ US14063_3
+
+Scenario Outline: Verify ‘Clear’ button functionality before fetching container details
+Given I am logged in to DLR Inventory Management as user '<user>' and with '<Password>'
+And I click on 'Receive Stock' icon 
+And I can see field to enter barcode
+And I enter a valid '<barcode>'
+When I click ‘Clear’ button
+Then I should see '<barcode>'as blank
+
+Examples:
+| user   		| Password	|barcode |
+| IMStockOperator	| P@ssw0rd	|case1   |
